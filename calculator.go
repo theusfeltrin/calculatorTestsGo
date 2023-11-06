@@ -5,16 +5,32 @@ import (
 )
 
 func sum(x float64, y float64) float64 {
-	return x + y
+	total := x + y
+	return total
 }
 func sub(x float64, y float64) float64 {
-	return x - y
+	total := x - y
+	return total
 }
 func mult(x float64, y float64) float64 {
-	return x * y
+	total := x * y
+	return total
 }
 func divide(x float64, y float64) float64 {
-	return x / y
+	total := x / y
+	return total
+}
+
+func validateOperator(operator string) bool {
+	validOperators := []string{"+", "-", "*", "/"}
+	found := false
+	for _, item := range validOperators {
+		if item == operator {
+			found = true
+			break
+		}
+	}
+	return found
 }
 
 func main() {
@@ -25,21 +41,21 @@ func main() {
 	fmt.Println("-----------------")
 
 	fmt.Print("Enter the first number: ")
-	_, err1 := fmt.Scanf("%f", &num1)
+	_, err1 := fmt.Scan(&num1)
 	if err1 != nil {
 		fmt.Println("Invalid input for the first number.")
 		return
 	}
 
 	fmt.Print("Enter the operator (+, -, *, /): ")
-	_, err2 := fmt.Scanf("%s", &operator)
-	if err2 != nil {
-		fmt.Println("Invalid operator.")
+	fmt.Scan(&operator)
+	if !validateOperator(operator) {
+		fmt.Println("Invalid operator input.")
 		return
 	}
 
 	fmt.Print("Enter the second number: ")
-	_, err3 := fmt.Scanf("%f", &num2)
+	_, err3 := fmt.Scan(&num2)
 	if err3 != nil {
 		fmt.Println("Invalid input for the second number.")
 		return
